@@ -78,4 +78,4 @@ public class Usuario {
     }
 }
 
-Creada clase modelo Usuario
+
