@@ -4,6 +4,9 @@ Proyecto de sistema de gestión de restaurante con Java Swing y PostgreSQL
 👨‍💻 Estudiantes:
 - Jeison Fabian Cepeda Vargas - 1005150274
 
+  👨‍🏫 Profesor:
+  -Mag. Carlos Adolfo Beltrán Castro
+
 ## ✅ Funcionalidades implementadas
 
 - Gestión del menú principal
