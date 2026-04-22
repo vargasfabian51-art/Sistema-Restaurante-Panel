@@ -1,11 +1,11 @@
 package main;
 
-import vista.VentanaUsuarios;
+import vista.MenuPrincipal;
 
 public class Main {
     public static void main(String[] args) {
         java.awt.EventQueue.invokeLater(() -> {
-            new VentanaUsuarios().setVisible(true);
+            new MenuPrincipal().setVisible(true);
         });
     }
 }
