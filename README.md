@@ -1,6 +1,8 @@
 # Sistema-Restaurante-Panel
 Proyecto de sistema de gestión de restaurante con Java Swing y PostgreSQL
 
+👨‍💻 Estudiantes:
+- Jeison Fabian Cepeda Vargas - 1005150274
 
 ## ✅ Funcionalidades implementadas
 
@@ -17,3 +19,31 @@ Proyecto de sistema de gestión de restaurante con Java Swing y PostgreSQL
 ## 🏠 Menu principal
 
 ![Menu principal](capturas/menu_principal.png)
+
+## 🧰 Lista de Tecnologías Usadas
+
+- Java SE
+- Java Swing
+- PostgreSQL
+- JDBC
+- NetBeans IDE
+- GitHub
+
+## 🔧 Instalación y ejecución
+
+1. Clonar el repositorio:
+   git clone (link de tu repo)
+
+2. Abrir el proyecto en NetBeans
+
+3. Configurar la conexión a PostgreSQL:
+   - Usuario: postgres
+   - Password: (tu contraseña)
+   - Base de datos: restaurante_bd
+
+4. Ejecutar el script SQL ubicado en:
+   /database/script.sql
+
+5. Ejecutar la clase Main.java
+
+6. Usar el sistema desde el menú principal
