@@ -16,7 +16,7 @@ Proyecto de sistema de gestión de restaurante con Java Swing y PostgreSQL
 
 ## 📊 Diagrama Entidad-Relación
 
-![Diagrama ER](capturas/diagrama_er.png)
+![Diagrama ER](docs/diagrama_er.png)
 ## 🖥️ Interfaz de Usuarios
 
 ![Interfaz Usuarios](capturas/usuarios_swing.png)
