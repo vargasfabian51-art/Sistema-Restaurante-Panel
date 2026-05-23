@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.List;
 
 /**
- * Ventana grafica para gestionar clientes.
+ * Ventana gráfica para gestionar clientes.
  * Permite guardar, listar, actualizar y eliminar clientes.
  */
 public class VentanaClientes extends JFrame {
@@ -29,21 +29,36 @@ public class VentanaClientes extends JFrame {
 
     private ClienteDAO clienteDAO;
 
+    private final Color COLOR_OSCURO = new Color(45, 52, 54);
+    private final Color COLOR_AZUL = new Color(9, 132, 227);
+    private final Color COLOR_FONDO = new Color(245, 246, 250);
+
     public VentanaClientes() {
         clienteDAO = new ClienteDAO();
 
-        setTitle("Gestion de Clientes - Sistema Restaurante");
-        setSize(750, 450);
+        setTitle("Gestión de Clientes - Sistema Restaurante");
+        setSize(850, 500);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        getContentPane().setBackground(COLOR_FONDO);
 
         inicializarComponentes();
         cargarClientes();
     }
 
     private void inicializarComponentes() {
+        JLabel lblTitulo = new JLabel("GESTIÓN DE CLIENTES", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 22));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(18, 10, 18, 10));
+
+        JPanel panelTitulo = new JPanel(new BorderLayout());
+        panelTitulo.setBackground(COLOR_OSCURO);
+        panelTitulo.add(lblTitulo, BorderLayout.CENTER);
+
         JPanel panelFormulario = new JPanel(new GridLayout(3, 2, 10, 10));
+        panelFormulario.setBackground(COLOR_FONDO);
         panelFormulario.setBorder(BorderFactory.createTitledBorder("Datos del Cliente"));
 
         panelFormulario.add(new JLabel("ID:"));
@@ -55,24 +70,40 @@ public class VentanaClientes extends JFrame {
         txtNombre = new JTextField();
         panelFormulario.add(txtNombre);
 
-        panelFormulario.add(new JLabel("Telefono:"));
+        panelFormulario.add(new JLabel("Teléfono:"));
         txtTelefono = new JTextField();
         panelFormulario.add(txtTelefono);
 
-        add(panelFormulario, BorderLayout.NORTH);
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setBackground(COLOR_FONDO);
+        panelSuperior.add(panelTitulo, BorderLayout.NORTH);
+        panelSuperior.add(panelFormulario, BorderLayout.CENTER);
 
-        modeloTabla = new DefaultTableModel(new Object[]{"ID", "Nombre", "Telefono"}, 0);
+        add(panelSuperior, BorderLayout.NORTH);
+
+        modeloTabla = new DefaultTableModel(new Object[]{"ID", "Nombre", "Teléfono"}, 0);
         tablaClientes = new JTable(modeloTabla);
+        tablaClientes.setRowHeight(24);
+        tablaClientes.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+        tablaClientes.setFont(new Font("Arial", Font.PLAIN, 13));
+
         JScrollPane scrollPane = new JScrollPane(tablaClientes);
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBotones = new JPanel(new FlowLayout());
+        panelBotones.setBackground(COLOR_FONDO);
 
         btnGuardar = new JButton("Guardar");
         btnActualizar = new JButton("Actualizar");
         btnEliminar = new JButton("Eliminar");
         btnLimpiar = new JButton("Limpiar");
         btnVolver = new JButton("Volver");
+
+        estilizarBoton(btnGuardar);
+        estilizarBoton(btnActualizar);
+        estilizarBoton(btnEliminar);
+        estilizarBoton(btnLimpiar);
+        estilizarBoton(btnVolver);
 
         panelBotones.add(btnGuardar);
         panelBotones.add(btnActualizar);
@@ -93,6 +124,14 @@ public class VentanaClientes extends JFrame {
                 cargarDatosDesdeTabla();
             }
         });
+    }
+
+    private void estilizarBoton(JButton boton) {
+        boton.setBackground(COLOR_AZUL);
+        boton.setForeground(Color.WHITE);
+        boton.setFont(new Font("Arial", Font.BOLD, 13));
+        boton.setFocusPainted(false);
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     private void guardarCliente() {
@@ -154,8 +193,8 @@ public class VentanaClientes extends JFrame {
 
         int opcion = JOptionPane.showConfirmDialog(
                 this,
-                "Desea eliminar este cliente?",
-                "Confirmar eliminacion",
+                "¿Desea eliminar este cliente?",
+                "Confirmar eliminación",
                 JOptionPane.YES_NO_OPTION
         );
 

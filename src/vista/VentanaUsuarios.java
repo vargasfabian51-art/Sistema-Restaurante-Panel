@@ -10,39 +10,42 @@ import java.util.List;
 
 public class VentanaUsuarios extends JFrame {
 
-    private JTextField txtId;
-    private JTextField txtNombre;
-    private JTextField txtCorreo;
-    private JTextField txtContrasena;
-    private JTextField txtRol;
-
-    private JButton btnGuardar;
-    private JButton btnActualizar;
-    private JButton btnEliminar;
-    private JButton btnLimpiar;
-    private JButton btnCargar;
-    private JButton btnVolver;
-
+    private JTextField txtId, txtNombre, txtCorreo, txtContrasena, txtRol;
+    private JButton btnGuardar, btnActualizar, btnEliminar, btnLimpiar, btnCargar, btnVolver;
     private JTable tablaUsuarios;
     private DefaultTableModel modeloTabla;
-
     private UsuarioDAO usuarioDAO;
+
+    private final Color COLOR_OSCURO = new Color(45, 52, 54);
+    private final Color COLOR_AZUL = new Color(9, 132, 227);
+    private final Color COLOR_FONDO = new Color(245, 246, 250);
 
     public VentanaUsuarios() {
         usuarioDAO = new UsuarioDAO();
 
-        setTitle("Gestion de Usuarios - Sistema Restaurante");
-        setSize(850, 500);
+        setTitle("Gestión de Usuarios - Sistema Restaurante");
+        setSize(900, 550);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        getContentPane().setBackground(COLOR_FONDO);
 
         inicializarComponentes();
         cargarUsuarios();
     }
 
     private void inicializarComponentes() {
+        JLabel lblTitulo = new JLabel("GESTIÓN DE USUARIOS", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 22));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(18, 10, 18, 10));
+
+        JPanel panelTitulo = new JPanel(new BorderLayout());
+        panelTitulo.setBackground(COLOR_OSCURO);
+        panelTitulo.add(lblTitulo, BorderLayout.CENTER);
+
         JPanel panelFormulario = new JPanel(new GridLayout(5, 2, 10, 10));
+        panelFormulario.setBackground(COLOR_FONDO);
         panelFormulario.setBorder(BorderFactory.createTitledBorder("Datos del Usuario"));
 
         panelFormulario.add(new JLabel("ID:"));
@@ -58,7 +61,7 @@ public class VentanaUsuarios extends JFrame {
         txtCorreo = new JTextField();
         panelFormulario.add(txtCorreo);
 
-        panelFormulario.add(new JLabel("Contrasena:"));
+        panelFormulario.add(new JLabel("Contraseña:"));
         txtContrasena = new JTextField();
         panelFormulario.add(txtContrasena);
 
@@ -66,14 +69,27 @@ public class VentanaUsuarios extends JFrame {
         txtRol = new JTextField();
         panelFormulario.add(txtRol);
 
-        add(panelFormulario, BorderLayout.NORTH);
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setBackground(COLOR_FONDO);
+        panelSuperior.add(panelTitulo, BorderLayout.NORTH);
+        panelSuperior.add(panelFormulario, BorderLayout.CENTER);
 
-        modeloTabla = new DefaultTableModel(new Object[]{"ID", "Nombre", "Correo", "Contrasena", "Rol"}, 0);
+        add(panelSuperior, BorderLayout.NORTH);
+
+        modeloTabla = new DefaultTableModel(
+                new Object[]{"ID", "Nombre", "Correo", "Contraseña", "Rol"}, 0
+        );
+
         tablaUsuarios = new JTable(modeloTabla);
+        tablaUsuarios.setRowHeight(24);
+        tablaUsuarios.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+        tablaUsuarios.setFont(new Font("Arial", Font.PLAIN, 13));
+
         JScrollPane scrollPane = new JScrollPane(tablaUsuarios);
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBotones = new JPanel(new FlowLayout());
+        panelBotones.setBackground(COLOR_FONDO);
 
         btnGuardar = new JButton("Guardar");
         btnActualizar = new JButton("Actualizar");
@@ -82,13 +98,19 @@ public class VentanaUsuarios extends JFrame {
         btnCargar = new JButton("Cargar Usuarios");
         btnVolver = new JButton("Volver");
 
+        estilizarBoton(btnGuardar);
+        estilizarBoton(btnActualizar);
+        estilizarBoton(btnEliminar);
+        estilizarBoton(btnLimpiar);
+        estilizarBoton(btnCargar);
+        estilizarBoton(btnVolver);
+
         panelBotones.add(btnGuardar);
         panelBotones.add(btnActualizar);
         panelBotones.add(btnEliminar);
         panelBotones.add(btnLimpiar);
         panelBotones.add(btnCargar);
         panelBotones.add(btnVolver);
-        
 
         add(panelBotones, BorderLayout.SOUTH);
 
@@ -104,6 +126,14 @@ public class VentanaUsuarios extends JFrame {
                 cargarDatosDesdeTabla();
             }
         });
+    }
+
+    private void estilizarBoton(JButton boton) {
+        boton.setBackground(COLOR_AZUL);
+        boton.setForeground(Color.WHITE);
+        boton.setFont(new Font("Arial", Font.BOLD, 13));
+        boton.setFocusPainted(false);
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     private void guardarUsuario() {
@@ -167,8 +197,8 @@ public class VentanaUsuarios extends JFrame {
         int id = Integer.parseInt(txtId.getText());
         int confirmacion = JOptionPane.showConfirmDialog(
                 this,
-                "Esta seguro de eliminar este usuario?",
-                "Confirmar eliminacion",
+                "¿Está seguro de eliminar este usuario?",
+                "Confirmar eliminación",
                 JOptionPane.YES_NO_OPTION
         );
 

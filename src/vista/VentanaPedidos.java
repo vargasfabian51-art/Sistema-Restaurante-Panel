@@ -46,6 +46,10 @@ public class VentanaPedidos extends JFrame {
 
     private double totalPedido;
 
+    private final Color COLOR_OSCURO = new Color(45, 52, 54);
+    private final Color COLOR_AZUL = new Color(9, 132, 227);
+    private final Color COLOR_FONDO = new Color(245, 246, 250);
+
     public VentanaPedidos() {
         clienteDAO = new ClienteDAO();
         productoDAO = new ProductoDAO();
@@ -57,11 +61,12 @@ public class VentanaPedidos extends JFrame {
 
         totalPedido = 0;
 
-        setTitle("Gestion de Pedidos - Sistema Restaurante");
-        setSize(900, 550);
+        setTitle("Gestión de Pedidos - Sistema Restaurante");
+        setSize(950, 580);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        getContentPane().setBackground(COLOR_FONDO);
 
         inicializarComponentes();
         cargarClientes();
@@ -69,25 +74,40 @@ public class VentanaPedidos extends JFrame {
     }
 
     private void inicializarComponentes() {
-        JPanel panelSuperior = new JPanel(new GridLayout(4, 2, 10, 10));
-        panelSuperior.setBorder(BorderFactory.createTitledBorder("Datos del Pedido"));
+        JLabel lblTitulo = new JLabel("GESTIÓN DE PEDIDOS", SwingConstants.CENTER);
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 22));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setBorder(BorderFactory.createEmptyBorder(18, 10, 18, 10));
 
-        panelSuperior.add(new JLabel("Cliente:"));
+        JPanel panelTitulo = new JPanel(new BorderLayout());
+        panelTitulo.setBackground(COLOR_OSCURO);
+        panelTitulo.add(lblTitulo, BorderLayout.CENTER);
+
+        JPanel panelFormulario = new JPanel(new GridLayout(4, 2, 10, 10));
+        panelFormulario.setBackground(COLOR_FONDO);
+        panelFormulario.setBorder(BorderFactory.createTitledBorder("Datos del Pedido"));
+
+        panelFormulario.add(new JLabel("Cliente:"));
         comboClientes = new JComboBox<>();
-        panelSuperior.add(comboClientes);
+        panelFormulario.add(comboClientes);
 
-        panelSuperior.add(new JLabel("Producto:"));
+        panelFormulario.add(new JLabel("Producto:"));
         comboProductos = new JComboBox<>();
-        panelSuperior.add(comboProductos);
+        panelFormulario.add(comboProductos);
 
-        panelSuperior.add(new JLabel("Cantidad:"));
+        panelFormulario.add(new JLabel("Cantidad:"));
         txtCantidad = new JTextField();
-        panelSuperior.add(txtCantidad);
+        panelFormulario.add(txtCantidad);
 
-        panelSuperior.add(new JLabel("Total:"));
+        panelFormulario.add(new JLabel("Total:"));
         txtTotal = new JTextField("0.0");
         txtTotal.setEditable(false);
-        panelSuperior.add(txtTotal);
+        panelFormulario.add(txtTotal);
+
+        JPanel panelSuperior = new JPanel(new BorderLayout());
+        panelSuperior.setBackground(COLOR_FONDO);
+        panelSuperior.add(panelTitulo, BorderLayout.NORTH);
+        panelSuperior.add(panelFormulario, BorderLayout.CENTER);
 
         add(panelSuperior, BorderLayout.NORTH);
 
@@ -96,15 +116,25 @@ public class VentanaPedidos extends JFrame {
         );
 
         tablaDetalle = new JTable(modeloTabla);
+        tablaDetalle.setRowHeight(24);
+        tablaDetalle.getTableHeader().setFont(new Font("Arial", Font.BOLD, 13));
+        tablaDetalle.setFont(new Font("Arial", Font.PLAIN, 13));
+
         JScrollPane scrollPane = new JScrollPane(tablaDetalle);
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel panelBotones = new JPanel(new FlowLayout());
+        panelBotones.setBackground(COLOR_FONDO);
 
         btnAgregarProducto = new JButton("Agregar Producto");
         btnGuardarPedido = new JButton("Guardar Pedido");
         btnLimpiar = new JButton("Limpiar");
         btnVolver = new JButton("Volver");
+
+        estilizarBoton(btnAgregarProducto);
+        estilizarBoton(btnGuardarPedido);
+        estilizarBoton(btnLimpiar);
+        estilizarBoton(btnVolver);
 
         panelBotones.add(btnAgregarProducto);
         panelBotones.add(btnGuardarPedido);
@@ -117,6 +147,14 @@ public class VentanaPedidos extends JFrame {
         btnGuardarPedido.addActionListener(e -> guardarPedido());
         btnLimpiar.addActionListener(e -> limpiarPedido());
         btnVolver.addActionListener(e -> dispose());
+    }
+
+    private void estilizarBoton(JButton boton) {
+        boton.setBackground(COLOR_AZUL);
+        boton.setForeground(Color.WHITE);
+        boton.setFont(new Font("Arial", Font.BOLD, 13));
+        boton.setFocusPainted(false);
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     /**
@@ -147,7 +185,7 @@ public class VentanaPedidos extends JFrame {
 
     /**
      * Agrega un producto temporalmente al pedido.
-     * Todavia no guarda en la base de datos.
+     * Todavía no guarda en la base de datos.
      */
     private void agregarProductoAlPedido() {
         Producto productoSeleccionado = (Producto) comboProductos.getSelectedItem();
@@ -169,7 +207,7 @@ public class VentanaPedidos extends JFrame {
         try {
             cantidad = Integer.parseInt(cantidadTexto);
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "La cantidad debe ser un numero entero.");
+            JOptionPane.showMessageDialog(this, "La cantidad debe ser un número entero.");
             return;
         }
 
@@ -226,11 +264,6 @@ public class VentanaPedidos extends JFrame {
             return;
         }
 
-        /*
-         * IMPORTANTE:
-         * Como el pedido se acaba de insertar, necesitamos saber el último ID.
-         * Por simplicidad académica, consultaremos el último pedido creado.
-         */
         int idPedidoGenerado = obtenerUltimoIdPedido();
 
         if (idPedidoGenerado == -1) {
@@ -261,12 +294,12 @@ public class VentanaPedidos extends JFrame {
             JOptionPane.showMessageDialog(this, "Pedido guardado correctamente.");
             limpiarPedido();
         } else {
-            JOptionPane.showMessageDialog(this, "Pedido guardado, pero hubo error en algun detalle.");
+            JOptionPane.showMessageDialog(this, "Pedido guardado, pero hubo error en algún detalle.");
         }
     }
 
     /**
-     * Metodo auxiliar para obtener el ultimo ID de pedido.
+     * Método auxiliar para obtener el último ID de pedido.
      * Se usa para relacionar el pedido con su detalle.
      */
     private int obtenerUltimoIdPedido() {
