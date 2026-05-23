@@ -4,7 +4,7 @@ Proyecto de sistema de gestión de restaurante desarrollado con Java Swing y Pos
 
 ---
 
-# 👨‍💻 Estudiantes
+# 👨‍💻 Estudiante
 
 - Jeison Fabian Cepeda Vargas - 1005150274
 
@@ -116,7 +116,7 @@ Sistema-Restaurante-Panel
 ## 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/TU-USUARIO/Sistema-Restaurante-Panel.git
+git clone https://github.com/vargasfabian51-art/Sistema-Restaurante-Panel.git
 ```
 
 ## 2. Abrir el proyecto en Apache NetBeans
@@ -138,7 +138,7 @@ Configurar:
 ```java
 private static final String URL = "jdbc:postgresql://localhost:5433/restaurante_bd";
 private static final String USER = "postgres";
-private static final String PASSWORD = "TU_PASSWORD";
+private static final String PASSWORD = "1808";
 ```
 
 ---
@@ -196,5 +196,5 @@ Las capturas del sistema se encuentran en la carpeta:
 Repositorio oficial del proyecto:
 
 ```text
-https://github.com/TU-USUARIO/Sistema-Restaurante-Panel
+https://github.com/vasrgafabian51-art/Sistema-Restaurante-Panel
 ```
