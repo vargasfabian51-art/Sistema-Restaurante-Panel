@@ -66,7 +66,7 @@ El sistema permite administrar diferentes módulos del restaurante mediante oper
 
 # 👥 Módulo Clientes
 
-![Clientes](capturas/clientes_final.png)
+![Clientes](capturas/clientes.png)
 
 ---
 
