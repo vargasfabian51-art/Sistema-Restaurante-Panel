@@ -65,12 +65,8 @@ public class Cliente {
      * Metodo toString
      * Permite mostrar la informacion del cliente.
      */
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "idCliente=" + idCliente +
-                ", nombre='" + nombre + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
-    }
+   @Override
+public String toString() {
+    return idCliente + " - " + nombre;
+}
 }

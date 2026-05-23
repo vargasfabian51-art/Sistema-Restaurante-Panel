@@ -8,6 +8,7 @@ public class MenuPrincipal extends JFrame {
     private JButton btnUsuarios;
     private JButton btnProductos;
     private JButton btnClientes;
+    private JButton btnPedidos;
     private JButton btnSalir;
 
     public MenuPrincipal() {
@@ -34,11 +35,13 @@ public class MenuPrincipal extends JFrame {
         btnUsuarios = new JButton("Gestion de Usuarios");
         btnProductos = new JButton("Gestion de Productos");
         btnClientes = new JButton("Gestion de Clientes");
+        btnPedidos = new JButton("Gestion de Pedidos");
         btnSalir = new JButton("Salir");
 
         panelBotones.add(btnUsuarios);
         panelBotones.add(btnProductos);
         panelBotones.add(btnClientes);
+        panelBotones.add(btnPedidos);
         panelBotones.add(btnSalir);
 
         add(panelBotones, BorderLayout.CENTER);
@@ -47,6 +50,7 @@ public class MenuPrincipal extends JFrame {
         btnProductos.addActionListener(e -> abrirVentanaProductos());
         btnClientes.addActionListener(e -> abrirVentanaClientes());
         btnSalir.addActionListener(e -> salirDelSistema());
+        btnPedidos.addActionListener(e -> abrirVentanaPedidos());
     }
 
     private void abrirVentanaUsuarios() {
@@ -73,5 +77,9 @@ public class MenuPrincipal extends JFrame {
     private void abrirVentanaClientes() {
     VentanaClientes ventanaClientes = new VentanaClientes();
     ventanaClientes.setVisible(true);
+}
+    private void abrirVentanaPedidos() {
+    VentanaPedidos ventanaPedidos = new VentanaPedidos();
+    ventanaPedidos.setVisible(true);
 }
 }
