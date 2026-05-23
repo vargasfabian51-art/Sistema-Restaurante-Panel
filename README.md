@@ -48,13 +48,13 @@ El sistema permite administrar diferentes módulos del restaurante mediante oper
 
 # 🏠 Menú Principal
 
-![Menu Principal](capturas/menu_principal.png)
+![Menu Principal](capturas/menu_final.png)
 
 ---
 
 # 👤 Módulo Usuarios
 
-![Usuarios](capturas/usuarios_swing.png)
+![Usuarios](capturas/usuarios_final.png)
 
 ---
 
