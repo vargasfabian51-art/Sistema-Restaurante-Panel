@@ -1,54 +1,200 @@
-# Sistema-Restaurante-Panel
-Proyecto de sistema de gestión de restaurante con Java Swing y PostgreSQL
+# 🍽️ Sistema-Restaurante-Panel
 
-👨‍💻 Estudiantes:
+Proyecto de sistema de gestión de restaurante desarrollado con Java Swing y PostgreSQL.
+
+---
+
+# 👨‍💻 Estudiantes
+
 - Jeison Fabian Cepeda Vargas - 1005150274
 
-👨‍🏫 Profesor:
--Mag. Carlos Adolfo Beltrán Castro
+# 👨‍🏫 Profesor
 
-## ✅ Funcionalidades implementadas
+- Mag. Carlos Adolfo Beltrán Castro
 
-- Gestión del menú principal
-- Conexión a PostgreSQL mediante JDBC
-- CRUD de usuarios conectado a base de datos
-- Interfaz gráfica Swing para usuarios
+# 📅 Tecnología de Desarrollo de Sistemas Informáticos
+I Semestre 2026
 
-## 📊 Diagrama Entidad-Relación
+---
+
+# 🚀 Descripción del Proyecto
+
+Este proyecto consiste en un sistema de gestión de restaurante desarrollado en Java SE utilizando interfaces gráficas con Swing y conexión a PostgreSQL mediante JDBC.
+
+El sistema permite administrar diferentes módulos del restaurante mediante operaciones CRUD conectadas directamente a la base de datos.
+
+---
+
+# ✅ Funcionalidades Implementadas
+
+- ✔️ Menú principal administrativo
+- ✔️ Conexión a PostgreSQL mediante JDBC
+- ✔️ CRUD de Usuarios
+- ✔️ CRUD de Productos
+- ✔️ CRUD de Clientes
+- ✔️ CRUD de Pedidos
+- ✔️ Navegación entre módulos
+- ✔️ Interfaz gráfica desarrollada con Java Swing
+- ✔️ Diseño visual personalizado
+- ✔️ Botones de navegación y salida
+
+---
+
+# 📊 Diagrama Entidad - Relación
 
 ![Diagrama ER](docs/diagrama_er.png)
-## 🖥️ Interfaz de Usuarios
 
-![Interfaz Usuarios](capturas/usuarios_swing.png)
+---
 
-## 🏠 Menu principal
+# 🏠 Menú Principal
 
-![Menu principal](capturas/menu_principal.png)
+![Menu Principal](capturas/menu_final.png)
 
-## 🧰 Lista de Tecnologías Usadas
+---
+
+# 👤 Módulo Usuarios
+
+![Usuarios](capturas/usuarios_final.png)
+
+---
+
+# 🍔 Módulo Productos
+
+![Productos](capturas/productos_final.png)
+
+---
+
+# 👥 Módulo Clientes
+
+![Clientes](capturas/clientes_final.png)
+
+---
+
+# 📦 Módulo Pedidos
+
+![Pedidos](capturas/pedidos_final.png)
+
+---
+
+# 🧰 Tecnologías Utilizadas
 
 - Java SE
 - Java Swing
 - PostgreSQL
 - JDBC
-- NetBeans IDE
+- Apache NetBeans IDE
+- Git
 - GitHub
 
-## 🔧 Instalación y ejecución
+---
 
-1. Clonar el repositorio:
-   git clone (link de tu repo)
+# 📂 Estructura del Proyecto
 
-2. Abrir el proyecto en NetBeans
+```text
+Sistema-Restaurante-Panel
+│
+├── capturas/
+├── database/
+├── docs/
+├── src/
+│   ├── conexion/
+│   ├── dao/
+│   ├── main/
+│   ├── modelo/
+│   ├── resources/
+│   └── vista/
+│
+├── build.xml
+├── manifest.mf
+└── README.md
+```
 
-3. Configurar la conexión a PostgreSQL:
-   - Usuario: postgres
-   - Password: (tu contraseña)
-   - Base de datos: restaurante_bd
+---
 
-4. Ejecutar el script SQL ubicado en:
-   /database/script.sql
+# 🔧 Instalación y Ejecución
 
-5. Ejecutar la clase Main.java
+## 1. Clonar el repositorio
 
-6. Usar el sistema desde el menú principal
+```bash
+git clone https://github.com/TU-USUARIO/Sistema-Restaurante-Panel.git
+```
+
+## 2. Abrir el proyecto en Apache NetBeans
+
+Importar el proyecto desde la carpeta clonada.
+
+---
+
+## 3. Configurar PostgreSQL
+
+Editar la clase:
+
+```text
+src/conexion/ConexionBD.java
+```
+
+Configurar:
+
+```java
+private static final String URL = "jdbc:postgresql://localhost:5433/restaurante_bd";
+private static final String USER = "postgres";
+private static final String PASSWORD = "TU_PASSWORD";
+```
+
+---
+
+## 4. Ejecutar Script SQL
+
+Ejecutar el archivo:
+
+```text
+/database/script.sql
+```
+
+desde pgAdmin o PostgreSQL.
+
+---
+
+## 5. Ejecutar el Proyecto
+
+Ejecutar:
+
+```text
+Main.java
+```
+
+Ubicada en:
+
+```text
+src/main/Main.java
+```
+
+---
+
+# 📌 Estado del Proyecto
+
+✅ Proyecto funcional  
+✅ CRUDs conectados a PostgreSQL  
+✅ Interfaz gráfica funcional  
+✅ Navegación entre módulos  
+✅ Repositorio GitHub configurado  
+
+---
+
+# 📷 Capturas del Sistema
+
+Las capturas del sistema se encuentran en la carpeta:
+
+```text
+/capturas
+```
+
+---
+
+# 🔗 Repositorio GitHub
+
+Repositorio oficial del proyecto:
+
+```text
+https://github.com/TU-USUARIO/Sistema-Restaurante-Panel
+```
