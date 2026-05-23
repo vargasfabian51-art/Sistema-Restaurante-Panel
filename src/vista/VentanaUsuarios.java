@@ -21,6 +21,7 @@ public class VentanaUsuarios extends JFrame {
     private JButton btnEliminar;
     private JButton btnLimpiar;
     private JButton btnCargar;
+    private JButton btnVolver;
 
     private JTable tablaUsuarios;
     private DefaultTableModel modeloTabla;
@@ -32,7 +33,7 @@ public class VentanaUsuarios extends JFrame {
 
         setTitle("Gestion de Usuarios - Sistema Restaurante");
         setSize(850, 500);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
@@ -79,12 +80,15 @@ public class VentanaUsuarios extends JFrame {
         btnEliminar = new JButton("Eliminar");
         btnLimpiar = new JButton("Limpiar");
         btnCargar = new JButton("Cargar Usuarios");
+        btnVolver = new JButton("Volver");
 
         panelBotones.add(btnGuardar);
         panelBotones.add(btnActualizar);
         panelBotones.add(btnEliminar);
         panelBotones.add(btnLimpiar);
         panelBotones.add(btnCargar);
+        panelBotones.add(btnVolver);
+        
 
         add(panelBotones, BorderLayout.SOUTH);
 
@@ -93,6 +97,7 @@ public class VentanaUsuarios extends JFrame {
         btnEliminar.addActionListener(e -> eliminarUsuario());
         btnLimpiar.addActionListener(e -> limpiarCampos());
         btnCargar.addActionListener(e -> cargarUsuarios());
+        btnVolver.addActionListener(e -> dispose());
 
         tablaUsuarios.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
