@@ -45,7 +45,7 @@ public class MenuPrincipal extends JFrame {
 
         btnUsuarios.addActionListener(e -> abrirVentanaUsuarios());
         btnProductos.addActionListener(e -> abrirVentanaProductos());
-        btnClientes.addActionListener(e -> JOptionPane.showMessageDialog(this, "Modulo de Clientes en construccion."));
+        btnClientes.addActionListener(e -> abrirVentanaClientes());
         btnSalir.addActionListener(e -> salirDelSistema());
     }
 
@@ -69,5 +69,9 @@ public class MenuPrincipal extends JFrame {
     private void abrirVentanaProductos() {
     VentanaProductos ventanaProductos = new VentanaProductos();
     ventanaProductos.setVisible(true);
+}
+    private void abrirVentanaClientes() {
+    VentanaClientes ventanaClientes = new VentanaClientes();
+    ventanaClientes.setVisible(true);
 }
 }
