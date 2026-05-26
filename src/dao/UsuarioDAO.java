@@ -122,4 +122,44 @@ public class UsuarioDAO {
 
         return null;
     }
+    /**
+ * Valida el inicio de sesión de un usuario.
+ * Recibe correo y contraseña, busca el usuario en la base de datos
+ * y si existe devuelve un objeto Usuario.
+ * Si no existe, devuelve null.
+ */
+public Usuario validarLogin(String correo, String contrasena) {
+
+    String sql = "SELECT id_usuario, nombre, correo, contrasena, rol "
+            + "FROM usuarios "
+            + "WHERE correo = ? AND contrasena = ?";
+
+    try (Connection conexion = ConexionBD.conectar();
+         PreparedStatement ps = conexion.prepareStatement(sql)) {
+
+        ps.setString(1, correo);
+        ps.setString(2, contrasena);
+
+        try (ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+
+                Usuario usuario = new Usuario();
+
+                usuario.setIdUsuario(rs.getInt("id_usuario"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setCorreo(rs.getString("correo"));
+                usuario.setContrasena(rs.getString("contrasena"));
+                usuario.setRol(rs.getString("rol"));
+
+                return usuario;
+            }
+        }
+
+    } catch (SQLException e) {
+        System.out.println("Error al validar login: " + e.getMessage());
+    }
+
+    return null;
+}
 }
