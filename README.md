@@ -45,6 +45,10 @@ El sistema permite administrar diferentes módulos del restaurante mediante oper
 ![Diagrama ER](docs/diagrama_er.png)
 
 ---
+# 🏠 Inicio Sesion
+
+![Inicio Sesion](capturas/Inicio_Sesion.png)
+
 
 # 🏠 Menú Principal
 
